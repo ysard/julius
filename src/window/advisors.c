@@ -179,6 +179,14 @@ static void handle_mouse(const mouse *m)
     }
 }
 
+static void handle_keyboard(keyboard *k)
+{
+    if (k->esc_down) {
+        k->esc_down = 0;
+        window_city_show();
+    }
+}
+
 static void button_change_advisor(int advisor, int param2)
 {
     if (advisor) {
@@ -229,6 +237,7 @@ void window_advisors_show(void)
         draw_background,
         draw_foreground,
         handle_mouse,
+        handle_keyboard,
         get_tooltip
     };
     init();

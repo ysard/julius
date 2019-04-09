@@ -35,7 +35,9 @@ void window_logo_show(void)
         WINDOW_LOGO,
         draw_background,
         0,
-        handle_mouse
+        handle_mouse,
+        0,
+        0
     };
     init();
     window_show(&window);

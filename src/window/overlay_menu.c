@@ -137,6 +137,14 @@ static void handle_mouse(const mouse *m)
     }
 }
 
+static void handle_keyboard(keyboard *k)
+{
+    if (k->esc_down) {
+        k->esc_down = 0;
+        window_city_show();
+    }
+}
+
 static void button_menu_item(int index, int param2)
 {
     if (MENU_ID_TO_SUBMENU_ID[index] == 0) {
@@ -161,6 +169,7 @@ void window_overlay_menu_show(void)
         draw_background,
         draw_foreground,
         handle_mouse,
+        handle_keyboard,
         0
     };
     init();

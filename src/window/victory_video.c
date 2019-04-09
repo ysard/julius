@@ -49,6 +49,7 @@ void window_victory_video_show(const char *filename, int width, int height, void
             draw_background,
             draw_foreground,
             handle_mouse,
+            0,
             0
         };
         window_show(&window);

@@ -151,6 +151,7 @@ void window_mission_selection_show(void)
         draw_background,
         draw_foreground,
         handle_mouse,
+        0,
         0
     };
     data.choice = 0;

@@ -57,6 +57,14 @@ static void handle_mouse(const mouse *m)
     }
 }
 
+static void handle_keyboard(keyboard *k)
+{
+    if (k->esc_down) {
+        k->esc_down = 0;
+        window_city_show();
+    }
+}
+
 static void button_fullscreen(int param1, int param2)
 {
     system_set_fullscreen(!setting_fullscreen());
@@ -84,7 +92,9 @@ void window_display_options_show(void)
         WINDOW_DISPLAY_OPTIONS,
         0,
         draw_foreground,
-        handle_mouse
+        handle_mouse,
+        handle_keyboard,
+        0
     };
     window_show(&window);
 }

@@ -121,6 +121,7 @@ void window_gift_to_emperor_show(void)
         draw_background,
         draw_foreground,
         handle_mouse,
+        0,
         0
     };
     init();

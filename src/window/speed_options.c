@@ -79,6 +79,14 @@ static void handle_mouse(const mouse *m)
     }
 }
 
+static void handle_keyboard(keyboard *k)
+{
+    if (k->esc_down) {
+        k->esc_down = 0;
+        window_city_show();
+    }
+}
+
 static void button_ok(int param1, int param2)
 {
     window_city_show();
@@ -114,7 +122,9 @@ void window_speed_options_show(void)
         WINDOW_SPEED_OPTIONS,
         0,
         draw_foreground,
-        handle_mouse
+        handle_mouse,
+        handle_keyboard,
+        0
     };
     init();
     window_show(&window);

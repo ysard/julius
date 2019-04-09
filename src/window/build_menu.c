@@ -188,6 +188,14 @@ static void handle_mouse(const mouse *m)
     }
 }
 
+static void handle_keyboard(keyboard *k)
+{
+    if (k->esc_down) {
+        k->esc_down = 0;
+        window_city_show();
+    }
+}
+
 static int button_index_to_submenu_item(int index)
 {
     int item = -1;
@@ -250,6 +258,7 @@ void window_build_menu_show(int submenu)
             draw_background,
             draw_foreground,
             handle_mouse,
+            handle_keyboard,
             0
         };
         window_show(&window);

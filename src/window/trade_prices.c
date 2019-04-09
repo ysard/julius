@@ -70,6 +70,7 @@ void window_trade_prices_show(void)
         draw_background,
         0,
         handle_mouse,
+        0,
         get_tooltip
     };
     window_show(&window);

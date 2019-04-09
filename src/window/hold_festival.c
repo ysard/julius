@@ -180,6 +180,7 @@ void window_hold_festival_show(void)
         draw_background,
         draw_foreground,
         handle_mouse,
+        0,
         get_tooltip
     };
     window_show(&window);

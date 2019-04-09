@@ -150,7 +150,8 @@ void window_donate_to_city_show(void)
         draw_background,
         draw_foreground,
         handle_mouse,
-        get_tooltip
+        0,
+        get_tooltip,
     };
     city_emperor_init_donation_amount();
     window_show(&window);

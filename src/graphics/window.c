@@ -18,6 +18,9 @@ static void noop(void)
 static void noop_mouse(const mouse *m)
 {
 }
+static void noop_keyboard(keyboard *k)
+{
+}
 
 static void increase_queue_index(void)
 {
@@ -75,6 +78,10 @@ void window_show(const window_type *window)
     if (!current_window->handle_mouse) {
         current_window->handle_mouse = noop_mouse;
     }
+    if (!current_window->handle_keyboard) {
+        current_window->handle_keyboard = noop_keyboard;
+    }
+
     window_invalidate();
 }
 
@@ -109,6 +116,9 @@ void window_draw(int force)
 
     const mouse *m = mouse_get();
     current_window->handle_mouse(m);
+    keyboard *k = keyboard_get();
+    current_window->handle_keyboard(k);
+
     tooltip_handle(m, current_window->get_tooltip);
     warning_draw();
     update_mouse_after();

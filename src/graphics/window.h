@@ -3,6 +3,7 @@
 
 #include "graphics/tooltip.h"
 #include "input/mouse.h"
+#include "input/hotkey.h"
 
 typedef enum {
     WINDOW_LOGO,
@@ -52,6 +53,7 @@ typedef struct {
     void (*draw_background)(void);
     void (*draw_foreground)(void);
     void (*handle_mouse)(const mouse *m);
+    void (*handle_keyboard)(keyboard *k);
     void (*get_tooltip)(tooltip_context *c);
 } window_type;
 

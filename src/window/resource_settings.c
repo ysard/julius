@@ -217,6 +217,7 @@ void window_resource_settings_show(resource_type resource)
         draw_background,
         draw_foreground,
         handle_mouse,
+        0,
         0
     };
     init(resource);

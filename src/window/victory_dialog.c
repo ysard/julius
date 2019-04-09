@@ -97,6 +97,7 @@ void window_victory_dialog_show(void)
         draw_background,
         draw_foreground,
         handle_mouse,
+        0,
         0
     };
     window_show(&window);

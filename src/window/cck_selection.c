@@ -276,7 +276,9 @@ void window_cck_selection_show(void)
         WINDOW_CCK_SELECTION,
         draw_background,
         draw_foreground,
-        handle_mouse
+        handle_mouse,
+        0,
+        0
     };
     init();
     window_show(&window);

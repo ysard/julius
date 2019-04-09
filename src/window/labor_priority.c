@@ -113,6 +113,7 @@ void window_labor_priority_show(int category)
         draw_background,
         draw_foreground,
         handle_mouse,
+        0,
         get_tooltip
     };
     init(category);

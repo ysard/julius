@@ -43,6 +43,14 @@ static void handle_mouse(const mouse *m)
     }
 }
 
+static void handle_keyboard(keyboard *k)
+{
+    if (k->esc_down) {
+        k->esc_down = 0;
+        window_city_show();
+    }
+}
+
 static void arrow_button_difficulty(int is_down, int param2)
 {
     if (is_down) {
@@ -63,7 +71,9 @@ void window_difficulty_options_show(void)
         WINDOW_DIFFICULTY_OPTIONS,
         0,
         draw_foreground,
-        handle_mouse
+        handle_mouse,
+        handle_keyboard,
+        0
     };
     window_show(&window);
 }

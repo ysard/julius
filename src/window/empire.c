@@ -459,6 +459,16 @@ static void handle_mouse(const mouse *m)
     }
 }
 
+static void handle_keyboard(keyboard *k)
+{
+    if (k->esc_down) {
+        // Force key down now to avoid closing messages behind
+        // (like no dock available)
+        k->esc_down = 0;
+        window_city_show();
+    }
+}
+
 static int is_mouse_hit(tooltip_context *c, int x, int y, int size)
 {
     int mx = c->mouse_x;
@@ -568,6 +578,7 @@ void window_empire_show(void)
         draw_background,
         draw_foreground,
         handle_mouse,
+        handle_keyboard,
         get_tooltip
     };
     init();

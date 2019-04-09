@@ -465,6 +465,15 @@ static void handle_mouse(const mouse *m)
     }
 }
 
+static void handle_keyboard(keyboard *k)
+{
+    if (k->esc_down) {
+        // Force key down now to avoid closing message_list behind
+        k->esc_down = 0;
+        button_close(0, 0);
+    }
+}
+
 static void button_back(int param1, int param2)
 {
     if (data.num_history > 0) {
@@ -529,6 +538,7 @@ void window_message_dialog_show(int text_id, int background_is_provided)
         draw_background,
         draw_foreground,
         handle_mouse,
+        handle_keyboard,
         0
     };
     init(text_id, background_is_provided);

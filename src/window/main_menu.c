@@ -79,7 +79,9 @@ void window_main_menu_show(void)
         WINDOW_MAIN_MENU,
         draw_background,
         draw_foreground,
-        handle_mouse
+        handle_mouse,
+        0,
+        0
     };
     window_show(&window);
 }

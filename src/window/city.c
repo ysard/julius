@@ -134,6 +134,7 @@ void window_city_show(void)
         draw_background,
         draw_foreground,
         handle_mouse,
+        0,
         get_tooltip
     };
     window_show(&window);
@@ -147,6 +148,7 @@ void window_city_military_show(int legion_formation_id)
         draw_background,
         draw_foreground_military,
         handle_mouse_military,
+        0,
         get_tooltip
     };
     window_show(&window);

@@ -566,6 +566,14 @@ static void handle_mouse(const mouse *m)
     }
 }
 
+static void handle_keyboard(keyboard *k)
+{
+    if (k->esc_down) {
+        k->esc_down = 0;
+        window_city_show();
+    }
+}
+
 static void get_tooltip(tooltip_context *c)
 {
     int text_id = 0;
@@ -612,6 +620,7 @@ void window_building_info_show(int grid_offset)
         draw_background,
         draw_foreground,
         handle_mouse,
+        handle_keyboard,
         get_tooltip
     };
     init(grid_offset);

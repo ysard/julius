@@ -22,12 +22,12 @@
 #include "window/popup_dialog.h"
 #include "window/city.h"
 
-static struct {
-    int ctrl_down;
-    int alt_down;
-    int shift_down;
-    int is_cheating;
-} data = {0, 0, 0, 0};
+static keyboard data = {0, 0, 0, 0, 0};
+
+keyboard *keyboard_get(void)
+{
+    return &data;
+}
 
 static void change_game_speed(int is_down)
 {
@@ -146,12 +146,25 @@ static void cheat_money(void)
     }
 }
 
+static void confirm_exit(int accepted)
+{
+    if (accepted) {
+        system_exit();
+    }
+}
+
+static void show_exit_popup(void)
+{
+    video_stop();
+    window_popup_dialog_show(POPUP_DIALOG_QUIT, confirm_exit, 1);
+}
+
 void hotkey_character(int c)
 {
     if (data.alt_down) {
         switch (c) {
             case 'X': case 'x':
-                hotkey_esc();
+                show_exit_popup();
                 break;
             case 'K': case 'k':
                 cheat_init_or_invasion();
@@ -279,19 +292,6 @@ void hotkey_end(void)
     }
 }
 
-static void confirm_exit(int accepted)
-{
-    if (accepted) {
-        system_exit();
-    }
-}
-
-void hotkey_esc(void)
-{
-    video_stop();
-    window_popup_dialog_show(POPUP_DIALOG_QUIT, confirm_exit, 1);
-}
-
 void hotkey_page_up(void)
 {
     change_game_speed(0);
@@ -366,9 +366,15 @@ void hotkey_shift(int is_down)
     data.shift_down = is_down;
 }
 
+void hotkey_esc(int is_down)
+{
+    data.esc_down = is_down;
+}
+
 void hotkey_reset_state(void)
 {
     data.ctrl_down = 0;
     data.alt_down = 0;
     data.shift_down = 0;
+    data.esc_down = 0;
 }

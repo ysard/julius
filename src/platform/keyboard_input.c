@@ -63,7 +63,7 @@ void platform_handle_key_down(SDL_KeyboardEvent *event)
             hotkey_page_down();
             break;
         case SDLK_ESCAPE:
-            hotkey_esc();
+            hotkey_esc(1);
             break;
         case SDLK_F1: hotkey_func(1); break;
         case SDLK_F2: hotkey_func(2); break;
@@ -138,6 +138,9 @@ void platform_handle_key_up(SDL_KeyboardEvent *event)
         case SDLK_LSHIFT:
         case SDLK_RSHIFT:
             hotkey_shift(0);
+            break;
+        case SDLK_ESCAPE:
+            hotkey_esc(0);
             break;
         default:
             break;

@@ -64,7 +64,9 @@ void window_trade_opened_show(int city)
         WINDOW_TRADE_OPENED,
         draw_background,
         draw_foreground,
-        handle_mouse
+        handle_mouse,
+        0,
+        0
     };
     selected_city = city;
     window_show(&window);

@@ -117,6 +117,14 @@ static void handle_mouse(const mouse *m)
     }
 }
 
+static void handle_keyboard(keyboard *k)
+{
+    if (k->esc_down) {
+        k->esc_down = 0;
+        window_city_show();
+    }
+}
+
 static void button_toggle(int type, int param2)
 {
     setting_toggle_sound_enabled(type);
@@ -199,6 +207,8 @@ void window_sound_options_show(void)
         0,
         draw_foreground,
         handle_mouse,
+        handle_keyboard,
+        0
     };
     init();
     window_show(&window);

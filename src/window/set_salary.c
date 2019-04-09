@@ -96,6 +96,7 @@ void window_set_salary_show(void)
         window_advisors_draw_dialog_background,
         draw_foreground,
         handle_mouse,
+        0,
         0
     };
     window_show(&window);

@@ -70,6 +70,17 @@ static void handle_mouse(const mouse *m)
     }
 }
 
+static void handle_keyboard(keyboard *k)
+{
+    if (k->esc_down) {
+        // Force key down now to avoid closing any subwindow behind
+        // (like empire map)
+        k->esc_down = 0;
+        data.close_func(0);
+        window_go_back();
+    }
+}
+
 void button_ok(int param1, int param2)
 {
     window_popup_dialog_confirm();
@@ -94,7 +105,9 @@ void window_popup_dialog_show(popup_dialog_type type, void (*close_func)(int acc
             WINDOW_POPUP_DIALOG,
             draw_background,
             draw_foreground,
-            handle_mouse
+            handle_mouse,
+            handle_keyboard,
+            0
         };
         window_show(&window);
     }

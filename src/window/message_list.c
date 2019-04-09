@@ -224,6 +224,14 @@ static void handle_mouse(const mouse *m)
     handle_mouse_scrollbar(m_dialog);
 }
 
+static void handle_keyboard(keyboard *k)
+{
+    if (k->esc_down) {
+        k->esc_down = 0;
+        window_city_show();
+    }
+}
+
 static void button_scroll(int is_down, int num_lines)
 {
     city_message_scroll(is_down, num_lines);
@@ -284,6 +292,7 @@ void window_message_list_show(void)
         draw_background,
         draw_foreground,
         handle_mouse,
+        handle_keyboard,
         get_tooltip
     };
     init();

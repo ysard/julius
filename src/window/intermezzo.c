@@ -126,6 +126,7 @@ void window_intermezzo_show(intermezzo_type type, void (*callback)(void))
         draw_background,
         0,
         handle_mouse,
+        0,
         0
     };
     init(type, callback);

@@ -175,6 +175,14 @@ static void handle_mouse(const mouse *m)
     }
 }
 
+static void handle_keyboard(keyboard *k)
+{
+    if (k->esc_down) {
+        k->esc_down = 0;
+        window_go_back();
+    }
+}
+
 static void button_ok_cancel(int is_ok, int param2)
 {
     if (!is_ok) {
@@ -248,7 +256,9 @@ void window_file_dialog_show(file_dialog_type type)
         WINDOW_FILE_DIALOG,
         0,
         draw_foreground,
-        handle_mouse
+        handle_mouse,
+        handle_keyboard,
+        0
     };
     init(type);
     window_show(&window);
